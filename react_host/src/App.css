@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+}
+#frontDesk {
+   display: flex;
+   justify-content: center;   /* centers horizontally */
+   margin-top: 25%;   /* centers vertically */
+  
+   
+}
+.tables{
+  margin: 20px;
+}
+.B_tables{
+ 
+}
+#D_rows{
+    position: fixed;
+    top: 0;
+    left: 0;
+  
+  display: flex;
+  flex-direction: row;
+}
+
+#A_rows{
+   position: fixed;
+   top: 0;
+   right: 0;
+   display: inline-block;
+      
+}
+#B_rows{
+  
+   position: fixed;
+   top:0;
+   right: 250px;
+   display: inline-block;
+      
+}
+html{
+  background-color: #010108;
+opacity: 0.8;
+background-image:  linear-gradient(#424251 1px, transparent 1px), linear-gradient(to right, #424251 1px, #010108 1px);
+background-size: 20px 20px;
+}
