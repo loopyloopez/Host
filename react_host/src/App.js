@@ -1,27 +1,48 @@
+import React, { useState, useEffect } from 'react';
+import { socket } from './socket';
+import { ConnectionState } from './Components/ConnectionState';
+import { ConnectionManager } from './Components/ConnectionManager';
+import { Events } from "./Components/Events";
+import { MyForm } from './Components/MyForm';
+import Rest from "./Components/Rest.jsx";
 
-import './App.css';
-import React from 'react';
+export default function App() {
+  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [fooEvents, setFooEvents] = useState([]);
+  const [text, setText] = useState("nothing");
+  useEffect(() => {
+    function onConnect() {
+      setIsConnected(true);
+    }
 
-//import Table from './Components/tables';
-import FrontDesk from './Components/frontDesk';
-import Drows from './Components/Drows';
-import Arows from './Components/Arows';
-import Brows from './Components/Brows';
-import Erows from './Components/Erows';
+    function onDisconnect() {
+      setIsConnected(false);
+    }
 
+    function onFooEvent(value) {
+      setText(value);
+      setFooEvents(previous => [...previous, value]);
+    }
 
-function App() {
-  
+    socket.on('connect', onConnect);
+    socket.on('disconnect', onDisconnect);
+    socket.on('foo', onFooEvent);
+
+    return () => {
+      socket.off('connect', onConnect);
+      socket.off('disconnect', onDisconnect);
+      socket.off('foo', onFooEvent);
+    };
+  }, []);
+
   return (
-    <div>
-      <Erows />
-      <Brows />
-      <Drows />
-      <Arows />
-      <FrontDesk />
+    <div className="App">
+      <ConnectionState isConnected={ isConnected } />
+      <Events events={ fooEvents } />
+      <ConnectionManager />
+      <MyForm />
+      <h1>{text}</h1>
+     
     </div>
   );
-   
 }
-
-export default App;
