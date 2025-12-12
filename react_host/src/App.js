@@ -8,9 +8,10 @@ import './App.css';
 export default function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [fooEvents, setFooEvents] = useState([]);
-  const [settingsVisibility, setSettings] = useState("hidden");
+  const [settingsVisibility, setSettings] = useState("visible");
   let eyes ={
-    visibility: settingsVisibility
+    visibility: settingsVisibility,
+    backgroundColor: "rgba(255, 0, 0, 0.5)"
   }
   useEffect(() => {
     function onConnect() {
@@ -39,11 +40,11 @@ export default function App() {
   
   return (
     <div className="App">
-      <div style={eyes} className='controlPanel'>
+      <div style={eyes} className="controlPanel">
           <ConnectionState isConnected={ isConnected } />
           <Events events={ fooEvents } />
       </div>
-     <button onClick={() => {settingsVisibility === "hidden" ? setSettings("visible") : setSettings("hidden")}}>Toggle Control Panel</button>
+     
       <Rest/>
     
      
