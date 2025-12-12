@@ -1,6 +1,4 @@
-.App {
-  text-align: center;
-}
+
 #frontDesk {
   position: fixed;
   top: 50%;
@@ -56,8 +54,16 @@
    display: inline-block;
       
 }
+.controlPanel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 html{
-  background-color: #010108;
+background-color: #010108;
 opacity: 0.8;
 background-image:  linear-gradient(#424251 1px, transparent 1px), linear-gradient(to right, #424251 1px, #010108 1px);
 background-size: 20px 20px;

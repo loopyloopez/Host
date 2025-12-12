@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { socket } from './socket';
 import { ConnectionState } from './Components/ConnectionState';
-import { ConnectionManager } from './Components/ConnectionManager';
+//import { ConnectionManager } from './Components/ConnectionManager';
 import { Events } from "./Components/Events";
-import { MyForm } from './Components/MyForm';
 import Rest from "./Components/Rest.jsx";
-
+import './App.css';
 export default function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [fooEvents, setFooEvents] = useState([]);
-  const [text, setText] = useState("nothing");
+  const [settingsVisibility, setSettings] = useState("hidden");
+  let eyes ={
+    visibility: settingsVisibility
+  }
   useEffect(() => {
     function onConnect() {
       setIsConnected(true);
@@ -20,7 +22,7 @@ export default function App() {
     }
 
     function onFooEvent(value) {
-      setText(value);
+      
       setFooEvents(previous => [...previous, value]);
     }
 
@@ -34,14 +36,18 @@ export default function App() {
       socket.off('foo', onFooEvent);
     };
   }, []);
-
+  
   return (
     <div className="App">
-      <ConnectionState isConnected={ isConnected } />
-      <Events events={ fooEvents } />
-      <ConnectionManager />
-      <MyForm />
-      <h1>{text}</h1>
+      <div style={eyes} className='controlPanel'>
+          <ConnectionState isConnected={ isConnected } />
+          <Events events={ fooEvents } />
+      </div>
+     <button onClick={() => {settingsVisibility === "hidden" ? setSettings("visible") : setSettings("hidden")}}>Toggle Control Panel</button>
+      <Rest/>
+    
+     
+      
      
     </div>
   );

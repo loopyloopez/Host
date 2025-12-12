@@ -18,7 +18,7 @@ io.on("connection", (socket) => {
 
 
 
-  io.emit("foo", "message from server");
+  
 
   // Example of broadcasting foo events
   socket.on("clientFoo", (msg) => {
