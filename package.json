@@ -19,6 +19,11 @@
   },
   "homepage": "https://github.com/loopyloopez/Host#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "react-use-websocket": "^4.13.0",
+    "ws": "^8.18.3"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.9"
   }
 }
