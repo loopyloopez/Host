@@ -28,6 +28,7 @@ function front_desk() {
   ));
   return(
     <div id="frontDesk">
+         <h1 className="tableText">Front Table</h1>
         {Table}
     </div>
   )

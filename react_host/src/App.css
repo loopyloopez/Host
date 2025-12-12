@@ -2,18 +2,36 @@
   text-align: center;
 }
 #frontDesk {
-   display: flex;
-   justify-content: center;   /* centers horizontally */
-   margin-top: 25%;   /* centers vertically */
+  position: fixed;
+  top: 50%;
+  left: 40%;
+  
   
    
+}
+#E_rows{
+    position: fixed;
+    display:block;
+    bottom: 0;
+    left: 0;
+   
+  
+ 
+}
+.tableText{
+  display: flex;
+  justify-content: center;
+ 
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  
+  margin-top: 50px;
 }
 .tables{
   margin: 20px;
 }
-.B_tables{
- 
-}
+
 #D_rows{
     position: fixed;
     top: 0;
