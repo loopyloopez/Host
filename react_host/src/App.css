@@ -62,12 +62,16 @@ background-color: hotpink;
 .timer{
   display: flex;
   justify-content: center;
+  align-items: center;
   color: red;
   font-family: 'Courier New', monospace;
-  background-color: black;
+  font-size: large;
   font-weight: "heavy";
   
   
+}
+.insideBox{
+  background-color:beige ;
 }
 #D_rows{
   
@@ -96,7 +100,7 @@ background-color: hotpink;
   
    position: fixed;
    top:0;
-   right: 10%;
+   right: 12.5%;
    display: inline-block;
       
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import Box from '@mui/material/Box';
+//import Box from '@mui/material/Box';
 import { ThemeProvider } from '@mui/material/styles';
 import { socket } from '/Users/ericklopez/projectHost/Host/react_host/src/socket';
 import { useState} from "react";
@@ -7,17 +7,26 @@ import Timer from "../Components/Timer.jsx";
 
 export default function Table(props) {
      const [tableColor, setTableColor] = useState("#2B1717");
-
+      const [isHidden, setIsHidden] = useState(true);
+     const eyes ={
+        visibility: isHidden ? 'hidden' : 'visible'
+    }
+     const tableStyle = {
+        width: props.width || 150,
+        height: props.height || 100,
+        backgroundColor:tableColor,
+     }
      socket.on('foo', (data)=>{
        if(data === props.label){
-            setTableColor("red");
+            setTableColor("#450B00");
+            setIsHidden(false);
        }
      });
     
     
     let Table = ((<div className={`tables ${props.class}`} > 
-    <button className={props.section} onClick={()=>{setTableColor("#2B1717")}}>
-        <Timer />
+    <button className={props.section} onClick={()=>{setTableColor("#2B1717"); setIsHidden(true);}}>
+       
 
   <ThemeProvider
       theme={{
@@ -30,19 +39,9 @@ export default function Table(props) {
       }}
     >
         
-      <Box 
-     
-        sx={{
-          width: props.width?props.width:120,
-          height: props.height?props.height:100,
-          borderRadius: 1,
-         
-          bgcolor: 'primary.main',
-          '&:hover': {
-            bgcolor: 'primary.dark',
-          },
-        }}
-      />
+      <div style={tableStyle} className="insideBox ">
+         <Timer eye={eyes}/>
+      </div>
      
     </ThemeProvider>
 

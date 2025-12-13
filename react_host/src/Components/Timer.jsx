@@ -3,8 +3,10 @@ import {useState} from "react";
 
 
 
-export default function Timer(){
+export default function Timer(props){
+   
     const [seconds, setSeconds] = useState(0);
+    
 
     React.useEffect(() => {
         const interval = setInterval(() => {
@@ -15,7 +17,7 @@ export default function Timer(){
     }, []);
 
     return(
-        <div class="timer">
+        <div class="timer" style={props.eye}>
             <h2>{seconds}</h2>
         </div>
     );
