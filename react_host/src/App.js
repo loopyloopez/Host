@@ -8,9 +8,9 @@ import './App.css';
 export default function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [fooEvents, setFooEvents] = useState([]);
-  const [settingsVisibility, setSettings] = useState("visible");
+  
   let eyes ={
-    visibility: settingsVisibility,
+  
     backgroundColor: "rgba(255, 0, 0, 0.5)"
   }
   useEffect(() => {

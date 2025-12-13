@@ -29,7 +29,13 @@
 .tables{
   margin: 20px;
 }
-
+.FCtables{
+  position: fixed;
+  top:400px;
+  right: 435px;
+  display: inline-block;
+  
+}
 #D_rows{
     position: fixed;
     top: 0;
@@ -38,7 +44,13 @@
   display: flex;
   flex-direction: row;
 }
-
+#C_rows{
+  position: fixed;
+  top:200px;
+  right: 435px;
+  display: inline-block;
+  
+}
 #A_rows{
    position: fixed;
    top: 0;

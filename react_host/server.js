@@ -29,7 +29,11 @@ io.on("connection", (socket) => {
     console.log("Client disconnected");
   });
 });
-
-server.listen(4000, () => {
+app.post("/", (req, res) => {
+  let table = req.query.table;
+  res.send(200);
+  io.emit("foo", req.query.table, (err)=>{if(err){console.log(err);}});
+});
+server.listen(4000,'0.0.0.0', () => {
   console.log("Server running on http://localhost:4000");
 });

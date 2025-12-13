@@ -4,6 +4,7 @@ import Arows from "./Arows";
 import Brows from "./Brows";
 import Erows from "./Erows";
 import Drows from "./Drows";
+import Crows from "./Crows";
 
 function Rest() {
     return(
@@ -13,6 +14,7 @@ function Rest() {
             <Brows/>
             <Erows/>
             <Drows/>
+            <Crows/>
             <FontDesk/>
         </div>
     )
