@@ -1,17 +1,27 @@
 import React from "react";
 import Box from '@mui/material/Box';
 import { ThemeProvider } from '@mui/material/styles';
-function table(props) {
+import { socket } from '/Users/ericklopez/projectHost/Host/react_host/src/socket';
+import { useState} from "react";
+
+export default function Table(props) {
+     const [tableColor, setTableColor] = useState("blue");
+
+     socket.on('foo', (data)=>{
+       if(data === props.label){
+            setTableColor("red");
+       }
+     });
+    
     
     let Table = ((<div className={`tables ${props.class}`} > 
-   
+    <button onClick={()=>{setTableColor("blue")}}>
 
-
-         <ThemeProvider
+  <ThemeProvider
       theme={{
         palette: {
           primary: {
-            main: props.color?props.color:'#0079f2ff',
+            main: tableColor,
             dark: '#0066CC',
           },
         },
@@ -24,6 +34,7 @@ function table(props) {
           width: props.width?props.width:120,
           height: props.height?props.height:100,
           borderRadius: 1,
+         
           bgcolor: 'primary.main',
           '&:hover': {
             bgcolor: 'primary.dark',
@@ -32,6 +43,13 @@ function table(props) {
       />
      
     </ThemeProvider>
+
+    </button>
+    
+   
+
+
+       
     </div>
    
   ));
@@ -52,4 +70,3 @@ function table(props) {
 
 
 
-export default table;

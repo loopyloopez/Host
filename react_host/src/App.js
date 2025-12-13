@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { socket } from './socket';
 import { ConnectionState } from './Components/ConnectionState';
-//import { ConnectionManager } from './Components/ConnectionManager';
-import { Events } from "./Components/Events";
+import { ConnectionManager } from './Components/ConnectionManager';
+//import { Events } from "./Components/Events";
 import Rest from "./Components/Rest.jsx";
 import './App.css';
 export default function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
-  const [fooEvents, setFooEvents] = useState([]);
+  //const [fooEvents, setFooEvents] = useState([]);
   
   let eyes ={
   
@@ -23,8 +23,8 @@ export default function App() {
     }
 
     function onFooEvent(value) {
-      
-      setFooEvents(previous => [...previous, value]);
+      return;
+     // setFooEvents(previous => [...previous, value]);
     }
 
     socket.on('connect', onConnect);
@@ -42,7 +42,8 @@ export default function App() {
     <div className="App">
       <div style={eyes} className="controlPanel">
           <ConnectionState isConnected={ isConnected } />
-          <Events events={ fooEvents } />
+          <ConnectionManager />
+          
       </div>
      
       <Rest/>
