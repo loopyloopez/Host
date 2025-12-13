@@ -59,6 +59,16 @@ background-color: orange;
 .E{
 background-color: hotpink;
 }
+.timer{
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-family: 'Courier New', monospace;
+  background-color: black;
+  font-weight: "heavy";
+  
+  
+}
 #D_rows{
   
     position: fixed;

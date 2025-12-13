@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import { ThemeProvider } from '@mui/material/styles';
 import { socket } from '/Users/ericklopez/projectHost/Host/react_host/src/socket';
 import { useState} from "react";
+import Timer from "../Components/Timer.jsx";
 
 export default function Table(props) {
      const [tableColor, setTableColor] = useState("#2B1717");
@@ -16,6 +17,7 @@ export default function Table(props) {
     
     let Table = ((<div className={`tables ${props.class}`} > 
     <button className={props.section} onClick={()=>{setTableColor("#2B1717")}}>
+        <Timer />
 
   <ThemeProvider
       theme={{
