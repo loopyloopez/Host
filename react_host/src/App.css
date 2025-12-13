@@ -16,6 +16,7 @@
   
  
 }
+
 .tableText{
   display: flex;
   justify-content: center;
@@ -28,6 +29,12 @@
 }
 .tables{
   margin: 20px;
+}
+.controlPanel{
+  position:fixed;
+  bottom: 0;
+  
+  right: 50%;
 }
 .FCtables{
   position: fixed;
