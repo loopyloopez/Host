@@ -43,7 +43,24 @@
   display: inline-block;
   
 }
+.A{
+ 
+ background-color: aqua;
+}
+.B{
+ background-color: purple;
+}
+.C{
+ background-color: yellow;
+}
+.D{
+background-color: orange;
+}
+.E{
+background-color: hotpink;
+}
 #D_rows{
+  
     position: fixed;
     top: 0;
     left: 0;
@@ -54,7 +71,7 @@
 #C_rows{
   position: fixed;
   top:200px;
-  right: 435px;
+  right: 25%;
   display: inline-block;
   
 }
@@ -69,7 +86,7 @@
   
    position: fixed;
    top:0;
-   right: 250px;
+   right: 10%;
    display: inline-block;
       
 }

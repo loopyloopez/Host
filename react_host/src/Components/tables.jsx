@@ -5,7 +5,7 @@ import { socket } from '/Users/ericklopez/projectHost/Host/react_host/src/socket
 import { useState} from "react";
 
 export default function Table(props) {
-     const [tableColor, setTableColor] = useState("blue");
+     const [tableColor, setTableColor] = useState("#2B1717");
 
      socket.on('foo', (data)=>{
        if(data === props.label){
@@ -15,7 +15,7 @@ export default function Table(props) {
     
     
     let Table = ((<div className={`tables ${props.class}`} > 
-    <button onClick={()=>{setTableColor("blue")}}>
+    <button className={props.section} onClick={()=>{setTableColor("#2B1717")}}>
 
   <ThemeProvider
       theme={{
