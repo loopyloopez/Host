@@ -1,110 +1,85 @@
-import React from "react";
-//import Box from '@mui/material/Box';
-import { ThemeProvider } from '@mui/material/styles';
-import { socket } from '/Users/ericklopez/projectHost/Host/react_host/src/socket';
-import { useState} from "react";
-
+import React, { useEffect, useState } from "react";
+import { ThemeProvider } from "@mui/material/styles";
+import { socket } from "../socket";
 
 export default function Table(props) {
-    const [isHidden, setIsHidden] = useState(true);
-    let on = false;
-    const eyes ={
-        visibility: isHidden ? 'hidden' : 'visible'
-    };
-     const [seconds, setSeconds] = useState(0);
-     let Timer=( <div class="timer" style={eyes}>
-            <h2>{seconds}</h2>
-        </div>)
-    
+  const [isHidden, setIsHidden] = useState(true);
+  const [seconds, setSeconds] = useState(0);
+  const [tableColor, setTableColor] = useState("#2B1717");
 
-    React.useEffect(() => {
-        const interval = setInterval(() => {
-            setSeconds((lastSecond)=>{
-                return lastSecond++;
-            });
-        }, 1000);
+  const eyes = {
+    visibility: isHidden ? "hidden" : "visible",
+  };
 
-        return () => clearInterval(interval);
-    }, []);
-        
-    
-        React.useEffect(() => {
-            const interval = setInterval(() => {
-                setSeconds(prevSeconds => prevSeconds + 1);
-            }, 1000);
-    
-            return () => clearInterval(interval);
-        }, []);
-     const [tableColor, setTableColor] = useState("#2B1717");
+  /* ✅ SINGLE TIMER */
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds((prev) => prev + 1);
+    }, 1000);
 
-     
-     const tableStyle = {
-        width: props.width || 150,
-        height: props.height || 100,
-        backgroundColor:tableColor,
-     }
-     socket.on('foo', (data)=>{
-        if(!on){
-            if(data === props.label){
-            
-            setTableColor("#450B00");
-            setIsHidden(false);
-            setSeconds(0);
+    return () => clearInterval(interval);
+  }, []);
 
-            
-          //  console.log(isHidden);
-            
-       }
+  /* ✅ SOCKET LISTENER WITH CLEANUP */
+  useEffect(() => {
+    const onFoo = (data) => {
+      if (data === props.label) {
+        if (isHidden) {
+          setTableColor("#450B00");
+          setIsHidden(false);
+          setSeconds(0);
+          console.log("approve to run this");
+        } else {
+          console.log("not approved to run this");
         }
-      
-     });
-    
-    
-    let Table = ((<div className={`tables ${props.class}`} > 
-    <button className={props.section} onClick={()=>{setTableColor("#2B1717"); setIsHidden(true); on=false;}}>
-       
+      }
+    };
 
-  <ThemeProvider
-      theme={{
-        palette: {
-          primary: {
-            main: tableColor,
-            dark: '#0066CC',
-          },
-        },
-      }}
-    >
-        
-      <div style={tableStyle} className="insideBox ">
-        {Timer}
-         
-      </div>
-     
-    </ThemeProvider>
+    socket.on("foo", onFoo);
 
-    </button>
-    
-   
+    return () => {
+      socket.off("foo", onFoo);
+    };
+  }, [props.label, isHidden]);
 
+  const tableStyle = {
+    width: props.width || 150,
+    height: props.height || 100,
+    backgroundColor: tableColor,
+  };
 
-       
-    </div>
-   
-  ));
-  return(
+  return (
     <div>
-        <h1 className="tableText">{props.label}</h1>
-        {Table}
+      <h1 className="tableText">{props.label}</h1>
+
+      <div className={`tables ${props.class}`}>
+        <button
+          className={props.section}
+          onClick={() => {
+            setTableColor("#2B1717");
+            setIsHidden(true);
+          }}
+        >
+          <ThemeProvider
+            theme={{
+              palette: {
+                primary: {
+                  main: tableColor,
+                },
+              },
+            }}
+          >
+            <div style={tableStyle} className="insideBox">
+              <div className="timer" style={eyes}>
+                <h2>{seconds}</h2>
+              </div>
+            </div>
+          </ThemeProvider>
+        </button>
+      </div>
     </div>
-  )
+  );
 }
-
-
-
-
-
-
-
 
 
 
