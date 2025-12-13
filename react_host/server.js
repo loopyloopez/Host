@@ -31,7 +31,7 @@ io.on("connection", (socket) => {
 });
 app.post("/", (req, res) => {
   let table = req.query.table;
-  res.send(200);
+  res.sendStatus(200);
   io.emit("foo", req.query.table, (err)=>{if(err){console.log(err);}});
 });
 server.listen(4000,'0.0.0.0', () => {
