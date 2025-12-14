@@ -34,7 +34,7 @@ export default function App() {
     return () => {
       socket.off('connect', onConnect);
       socket.off('disconnect', onDisconnect);
-      socket.off('foo', onFooEvent);
+       socket.off('foo', onFooEvent);
     };
   }, []);
   
@@ -45,7 +45,7 @@ export default function App() {
           <ConnectionManager />
           
       </div>
-     
+      
       <Rest/>
     
      

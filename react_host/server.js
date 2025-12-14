@@ -1,8 +1,10 @@
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
+import { json } from "stream/consumers";
 
 const app = express();
+app.use(express.json())
 const server = http.createServer(app);
 
 const io = new Server(server, {
@@ -30,9 +32,12 @@ io.on("connection", (socket) => {
   });
 });
 app.post("/", (req, res) => {
-  let table = req.query.table;
+
+  
+  let table = req.body.table;
+  console.log( `found table ${table}`)
   res.sendStatus(200);
-  io.emit("foo", req.query.table);
+  io.emit("foo", table);
 });
 server.listen(4000,'0.0.0.0', () => {
   console.log("Server running on http://localhost:4000");

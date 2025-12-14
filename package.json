@@ -2,28 +2,29 @@
   "name": "host",
   "version": "1.0.0",
   "description": "code that handles alert system",
-  "main": "server.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+  "homepage": "https://github.com/loopyloopez/Host#readme",
+  "bugs": {
+    "url": "https://github.com/loopyloopez/Host/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/loopyloopez/Host.git"
   },
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/loopyloopez/Host/issues"
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "homepage": "https://github.com/loopyloopez/Host#readme",
   "dependencies": {
     "express": "^4.22.1",
     "react-use-websocket": "^4.13.0",
     "socket.io": "^4.8.1",
     "ws": "^8.18.3"
   },
+  "devDependencies": {},
   "optionalDependencies": {
     "bufferutil": "^4.0.9"
   }
