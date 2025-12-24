@@ -3,10 +3,14 @@ import { ThemeProvider } from "@mui/material/styles";
 import { socket } from "../socket";
 
 export default function Table(props) {
+  const [voltage, setVoltage] = useState(0);
   const [isHidden, setIsHidden] = useState(true);
   const [seconds, setSeconds] = useState(0);
+  const [powerColor, setPowerColor] = useState('green');
   const [tableColor, setTableColor] = useState("#2B1717");
-
+  const voltageStyle={
+    color:powerColor
+  }
   const eyes = {
     visibility: isHidden ? "hidden" : "visible",
   };
@@ -23,7 +27,21 @@ export default function Table(props) {
   /* ✅ SOCKET LISTENER WITH CLEANUP */
   useEffect(() => {
     const onFoo = (data) => {
-      if (data === props.label) {
+    
+      if (data.table === props.label) {
+        
+        let currentVoltage=data.voltage;
+        setVoltage(currentVoltage);
+        let numVoltage=parseFloat(currentVoltage);
+        if(numVoltage > 2.7){
+        setPowerColor('green')
+        }
+        else if(numVoltage < 3 && numVoltage > 2.5){
+          setPowerColor('yellow')
+        }
+        else{
+          setPowerColor('red')
+        }
         if (isHidden) {
           setTableColor("#450B00");
           setIsHidden(false);
@@ -70,6 +88,7 @@ export default function Table(props) {
             }}
           >
             <div style={tableStyle} className="insideBox">
+              <h4 style={voltageStyle}>Power:{parseInt((125*voltage)-350)}%</h4>
               <div className="timer" style={eyes}>
                 <h2>{seconds}</h2>
               </div>

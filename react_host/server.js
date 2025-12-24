@@ -32,12 +32,14 @@ io.on("connection", (socket) => {
   });
 });
 app.post("/", (req, res) => {
+ 
 
-  
+  let voltage = req.body.voltage;
   let table = req.body.table;
-  console.log( `found table ${table}`)
+  let info = {'table':table,'voltage':voltage};
+  console.log( `found table ${table} and voltage was ${req.body.voltage}`)
   res.sendStatus(200);
-  io.emit("foo", table);
+  io.emit("foo", info);
 });
 server.listen(4000,'0.0.0.0', () => {
   console.log("Server running on http://localhost:4000");
