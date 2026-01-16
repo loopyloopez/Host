@@ -46,9 +46,9 @@ export default function Table(props) {
           setTableColor("#450B00");
           setIsHidden(false);
           setSeconds(0);
-          console.log("approve to run this");
+         // console.log("approve to run this");
         } else {
-          console.log("not approved to run this");
+         // console.log("not approved to run this");
         }
       }
     };
@@ -88,7 +88,7 @@ export default function Table(props) {
             }}
           >
             <div style={tableStyle} className="insideBox">
-              <h4 style={voltageStyle}>Power:{parseInt((125*voltage)-350)}%</h4>
+              <h4 style={voltageStyle}>Power:{parseInt((125*voltage)-350)}% or {voltage}V</h4>
               <div className="timer" style={eyes}>
                 <h2>{seconds}</h2>
               </div>
